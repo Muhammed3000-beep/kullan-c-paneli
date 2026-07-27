@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AppleBank Kullanıcı</title>
+
+<style>
+
+body{
+
+margin:0;
+
+font-family:Arial,sans-serif;
+
+background:#071952;
+
+color:white;
+
+}
+
+
+header{
+
+padding:25px;
+
+font-size:25px;
+
+font-weight:bold;
+
+}
+
+
+.kutu{
+
+background:white;
+
+color:#222;
+
+margin:20px;
+
+padding:25px;
+
+border-radius:25px;
+
+box-shadow:0 5px 25px #0005;
+
+}
+
+
+.iban{
+
+background:#123;
+
+color:white;
+
+padding:15px;
+
+border-radius:15px;
+
+}
+
+
+.bakiye{
+
+font-size:40px;
+
+color:#0077ff;
+
+font-weight:bold;
+
+margin:20px 0;
+
+}
+
+
+button{
+
+width:100%;
+
+padding:15px;
+
+margin-top:12px;
+
+border:0;
+
+border-radius:15px;
+
+background:#071952;
+
+color:white;
+
+font-size:16px;
+
+cursor:pointer;
+
+}
+
+
+button:hover{
+
+opacity:.8;
+
+}
+
+
+.islem{
+
+background:#eee;
+
+padding:12px;
+
+margin-top:10px;
+
+border-radius:10px;
+
+}
+
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+🏦 AppleBank Demo
+
+</header>
+
+
+<div class="kutu">
+
+
+<h2>
+
+Merhaba Ahmet Yılmaz 👋
+
+</h2>
+
+
+<div class="iban">
+
+IBAN
+
+<br><br>
+
+TR00 1234 5678 9012 3456
+
+</div>
+
+
+<div class="bakiye">
+
+₺10.000
+
+</div>
+
+
+<button>
+
+💸 Para Gönder
+
+</button>
+
+
+<button>
+
+📝 Kredi Başvurusu
+
+</button>
+
+
+<button>
+
+💳 Para Yükle
+
+</button>
+
+
+<button>
+
+📄 İşlemler
+
+</button>
+
+
+</div>
+
+
+
+<div class="kutu">
+
+
+<h3>
+
+Kampanyalar
+
+</h3>
+
+
+<div class="islem">
+
+🎁 Hoş geldin kampanyası
+
+</div>
+
+
+<div class="islem">
+
+⭐ Özel müşteri fırsatı
+
+</div>
+
+
+</div>
+
+
+
+<div class="kutu">
+
+
+<h3>
+
+Son İşlemler
+
+</h3>
+
+
+<div class="islem">
+
+Henüz işlem bulunmuyor.
+
+</div>
+
+
+</div>
+<div class="kutu">
+
+<h3>
+📝 Kredi Başvurusu
+</h3>
+
+<p>
+Kredi başvurusu için başvuru kodu oluşturabilirsiniz.
+</p>
+
+<button onclick="krediBasvurusu()">
+
+Başvuru Kodu Oluştur
+
+</button>
+
+<div id="krediKod"
+class="islem">
+
+Henüz başvuru yapılmadı.
+
+</div>
+
+</div>
+
+
+
+<div class="kutu">
+
+<h3>
+💳 Para Yükleme Doğrulama
+</h3>
+
+<p>
+Personelin kullanacağı doğrulama kodu:
+</p>
+
+<div id="dogrulamaKod"
+class="islem">
+
+Kod oluşturulmadı.
+
+</div>
+
+
+<button onclick="kodOlustur()">
+
+Doğrulama Kodu Oluştur
+
+</button>
+
+
+</div>
+
+
+
+<script>
+
+
+function rastgeleKod(){
+
+return Math.floor(100000 + Math.random()*900000);
+
+}
+
+
+
+function krediBasvurusu(){
+
+let kod = rastgeleKod();
+
+document.getElementById("krediKod").innerHTML =
+
+"Başvuru Numaranız: <b>"+kod+"</b><br><br>Personel incelemesi bekleniyor.";
+
+}
+
+
+
+function kodOlustur(){
+
+let kod = rastgeleKod();
+
+document.getElementById("dogrulamaKod").innerHTML =
+
+"Doğrulama Kodunuz: <b>"+kod+"</b>";
+
+}
+
+
+</script>
+
+</body>
+
+</html>
