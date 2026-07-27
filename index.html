@@ -333,7 +333,266 @@ document.getElementById("dogrulamaKod").innerHTML =
 
 
 </script>
+<div class="kutu">
 
+<h3>
+💸 Para Gönder
+</h3>
+
+
+<input 
+id="aliciIban"
+placeholder="Alıcı IBAN">
+
+
+<input 
+id="gonderTutar"
+type="number"
+placeholder="Gönderilecek tutar">
+
+
+<button onclick="paraGonder()">
+
+Gönder
+
+</button>
+
+
+<div id="sonuc"
+class="islem">
+
+Henüz işlem yapılmadı.
+
+</div>
+
+
+</div>
+
+
+
+<div class="kutu">
+
+<h3>
+📋 İşlem Geçmişi
+</h3>
+
+
+<div id="islemListesi">
+
+
+<div class="islem">
+
+AppleBank hesabı oluşturuldu.
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+
+<script>
+
+
+let kullaniciBakiye = 10000;
+
+
+
+function paraGonder(){
+
+
+let iban =
+
+document.getElementById("aliciIban").value;
+
+
+let tutar =
+
+Number(document.getElementById("gonderTutar").value);
+
+
+
+if(iban.length < 10){
+
+document.getElementById("sonuc").innerHTML =
+
+"❌ IBAN bilgisi hatalı.";
+
+return;
+
+}
+
+
+
+if(tutar <= 0){
+
+document.getElementById("sonuc").innerHTML =
+
+"❌ Geçerli tutar giriniz.";
+
+return;
+
+}
+
+
+
+if(tutar > kullaniciBakiye){
+
+document.getElementById("sonuc").innerHTML =
+
+"❌ Yetersiz bakiye.";
+
+return;
+
+}
+
+
+
+kullaniciBakiye -= tutar;
+
+
+
+document.querySelector(".bakiye").innerHTML =
+
+"₺"+kullaniciBakiye.toLocaleString("tr-TR");
+
+
+
+document.getElementById("sonuc").innerHTML =
+
+"✅ Para gönderildi.";
+
+
+
+document.getElementById("islemListesi").innerHTML +=
+
+
+"<div class='islem'>💸 "+tutar+
+
+" TL gönderildi.<br>IBAN: "+iban+
+
+"</div>";
+
+
+
+}
+
+
+
+</script>
+<div class="kutu">
+
+<h3>
+🔔 Bildirimler
+</h3>
+
+
+<div id="bildirim"
+class="islem">
+
+AppleBank Demo sistemine hoş geldiniz.
+
+</div>
+
+
+<button onclick="cikis()">
+
+🚪 Çıkış Yap
+
+</button>
+
+
+</div>
+
+
+
+<script>
+
+
+function bildirimGoster(mesaj){
+
+document.getElementById("bildirim").innerHTML =
+mesaj;
+
+}
+
+
+
+function verileriKaydet(){
+
+localStorage.setItem(
+
+"appleBakiye",
+
+kullaniciBakiye
+
+);
+
+
+localStorage.setItem(
+
+"appleSonGiris",
+
+new Date().toLocaleString("tr-TR")
+
+);
+
+
+}
+
+
+
+function verileriYukle(){
+
+
+let kayit =
+
+localStorage.getItem("appleBakiye");
+
+
+
+if(kayit){
+
+
+kullaniciBakiye = Number(kayit);
+
+
+
+document.querySelector(".bakiye").innerHTML =
+
+"₺"+kullaniciBakiye.toLocaleString("tr-TR");
+
+
+}
+
+
+
+}
+
+
+
+function cikis(){
+
+alert("AppleBank Demo'dan çıkış yapıldı.");
+
+location.reload();
+
+}
+
+
+
+setInterval(verileriKaydet,1000);
+
+
+verileriYukle();
+
+
+</script>
+  
 </body>
 
 </html>
