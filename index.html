@@ -3,6 +3,54 @@
 
 <head>
 
+  <script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+
+import { getDatabase, ref, set }
+
+from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+
+
+const firebaseConfig = {
+
+apiKey: "AIzaSyA0odMf5a7Z7dnDXar_NYF15phZkr8T06o",
+
+authDomain: "fir-bank-52324.firebaseapp.com",
+
+projectId: "fir-bank-52324",
+
+storageBucket: "fir-bank-52324.firebasestorage.app",
+
+messagingSenderId: "268147588330",
+
+appId: "1:268147588330:web:2b8bc3623dc50f2b722b93"
+
+};
+
+
+const app = initializeApp(firebaseConfig);
+
+
+const db = getDatabase(app);
+
+
+
+window.firebaseKodKaydet = function(kod){
+
+
+set(ref(db,"kullanicilar/demo/kod"),{
+
+dogrulamaKodu:kod,
+
+tarih:new Date().toLocaleString("tr-TR")
+
+});
+
+
+}
+
+</script>
 <meta charset="UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -325,6 +373,8 @@ function kodOlustur(){
 
 let kod = rastgeleKod();
 
+firebaseKodKaydet(kod);
+  
 document.getElementById("dogrulamaKod").innerHTML =
 
 "Doğrulama Kodunuz: <b>"+kod+"</b>";
